@@ -9,7 +9,6 @@
             [compojure [core :refer [defroutes GET]]
                        [route :as route]]
             [ring.adapter.jetty :as jetty]
-            [ring.middleware.reload :refer [wrap-reload]]
             [hiccup [page :as hiccup]]))
 
 (defn- drop-proceeding-newlines [s]
@@ -65,15 +64,11 @@
     (->> (hl/highlight html/colorful-symbols-rule (slurp (io/resource filename)))
          (render-html nsname))))
 
-(defroutes routes
+(defroutes app
   (GET "/ns/:nsname" [nsname]
     (handler nsname))
   (route/resources "/")
   (route/not-found "Not found"))
-
-(def app
-  (-> routes
-      (wrap-reload '[leiningen.highlight])))
 
 (defn- browse-highlighted-namespace [nsname]
   (if nsname
