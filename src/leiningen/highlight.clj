@@ -75,12 +75,12 @@
   (-> routes
       (wrap-reload '[leiningen.highlight])))
 
-(defn- browse-highlighted-code [filename]
-  (if filename
+(defn- browse-highlighted-namespace [nsname]
+  (if nsname
     (try
       (let [port (Integer/parseInt (get (System/getenv) "PORT" "8080"))
             server (jetty/run-jetty app {:port port, :join? false})]
-        (browse/browse-url (str "http://localhost:" port "/ns/" (str/replace filename #"/" "%2f")))
+        (browse/browse-url (str "http://localhost:" port "/ns/" nsname))
         (.join server)))
     (throw (Exception. "specify namespace to be highlighted"))))
 
@@ -90,7 +90,7 @@
   ([project command & args]
      (case command
        "browse"
-       #_=> (browse-highlighted-code (first args))
+       #_=> (browse-highlighted-namespace (first args))
        "repl"
        #_=> (m/repl :read (fn [_ _] (read-and-highlight (io/reader *in*)))
                     :need-prompt #(do true))
