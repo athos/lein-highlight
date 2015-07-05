@@ -57,6 +57,10 @@ pre {
     background: none repeat scroll 0 0 #ffffff;
 }
 
+.highlight pre {
+    padding-left: 8px;
+}
+
 .macro {
     font-weight: bold;
     color: #333;
