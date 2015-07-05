@@ -1,6 +1,6 @@
 # lein-highlight
 
-A Leiningen plugin to do many wonderful things.
+Leiningen plugin for highlighting Clojure code
 
 ## Usage
 
