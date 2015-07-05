@@ -59,10 +59,22 @@ pre {
 
 .macro {
     font-weight: bold;
+    color: #333;
+}
+
+.macro a {
+    text-decoration: none;
+    color: #333;
 }
 
 .special {
     font-weight: bold;
+    color: #333;
+}
+
+.special a {
+    text-decoration: none;
+    color: #333;
 }
 
 .var {
@@ -70,6 +82,16 @@ pre {
     font-weight: bold;
 }
 
+.var a {
+    color: #990000;
+    text-decoration: none;
+}
+
 .local {
-  color: teal;
+    color: teal;
+}
+
+.local a {
+    color: teal;
+    text-decoration: none;
 }
