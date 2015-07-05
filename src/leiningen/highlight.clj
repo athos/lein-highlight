@@ -58,10 +58,13 @@
                  [:div.line {:id (str "LC" i)} line])]]]]]]])))
 
 (defn- handler [nsname]
-  (let [filename (-> (#'clojure.core/root-resource nsname)
-                     (str/replace #"^/" "")
-                     (str ".clj"))]
-    (->> (hl/highlight html/colorful-symbols-rule (slurp (io/resource filename)))
+  (when-let [resource (-> (#'clojure.core/root-resource nsname)
+                          (str/replace #"^/" "")
+                          (str ".clj")
+                          io/resource)]
+    (->> (hl/highlight html/colorful-symbols-rule
+                       (slurp resource)
+                       :ns (create-ns (symbol nsname)))
          (render-html nsname))))
 
 (defroutes app
