@@ -1,5 +1,6 @@
 (ns user
   (:require [clojure.tools.namespace.repl :refer [refresh]]
+            [clojure.repl :refer :all]
             [leiningen.highlight :as hl]
             [ring.server.standalone :refer [serve]]))
 
