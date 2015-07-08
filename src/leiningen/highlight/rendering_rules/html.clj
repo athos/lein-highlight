@@ -28,3 +28,5 @@
 (def colorful-symbols-rule
   {:symbol {:content colorful-symbol}})
 
+(def keyword-rule
+  {:keyword {:content (fn [x v] (wrap-span "keyword" v))}})

@@ -3,7 +3,9 @@
             [clojure.string :as str]
             [clojure.java.io :as io]
             [clojure.java.browse :as browse]
-            [genuine-highlighter.core :as hl]
+            [genuine-highlighter
+             [core :as hl]
+             [rendering-rules :as r]]
             [genuine-highlighter.rendering-rules [terminal :as t]]
             [leiningen.highlight.rendering-rules.html :as html]
             [compojure [core :refer [defroutes GET]]
@@ -62,7 +64,8 @@
                           (str/replace #"^/" "")
                           (str ".clj")
                           io/resource)]
-    (->> (hl/highlight html/colorful-symbols-rule
+    (->> (hl/highlight (r/compose-rules html/colorful-symbols-rule
+                                        html/keyword-rule)
                        (slurp resource)
                        :ns (create-ns (symbol nsname)))
          (render-html nsname))))
