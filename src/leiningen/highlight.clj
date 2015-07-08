@@ -4,7 +4,7 @@
             [clojure.java.io :as io]
             [clojure.java.browse :as browse]
             [genuine-highlighter.core :as hl]
-            [genuine-highlighter.decoration-rules [terminal :as t]]
+            [genuine-highlighter.rendering-rules [terminal :as t]]
             [leiningen.highlight.rendering-rules.html :as html]
             [compojure [core :refer [defroutes GET]]
                        [route :as route]]
