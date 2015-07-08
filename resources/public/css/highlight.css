@@ -100,6 +100,10 @@ pre {
     text-decoration: none;
 }
 
+.quote {
+    color: #5e5e5e;
+}
+
 .keyword {
     color: #8955d9;
 }
