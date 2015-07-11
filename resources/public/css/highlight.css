@@ -69,6 +69,10 @@ pre {
     background-color: #c0d0ed;
 }
 
+.def {
+    cursor: pointer;
+}
+
 .macro {
     font-weight: bold;
     color: #333;

@@ -18,11 +18,16 @@ $(function() {
       .parents('.line')
       .addClass('highlighted-line');
 
-      $('.sym__' + hash).addClass('highlighted-symbol');
+      $('span[data-symbol="' + hash + '"]').addClass('highlighted-symbol');
     }
   }
 
   $(window).on('hashchange', highlightHashLine);
 
   highlightHashLine();
+
+  $('.def').on('click', function() {
+    var sym = $(this).data('symbol');
+    window.location.hash = '#' + sym;
+  });
 });
