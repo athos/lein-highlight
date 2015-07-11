@@ -1,18 +1,19 @@
 (ns leiningen.highlight.rendering-rules.html
-  (:require [clojure.string :as str]))
+  (:require [hiccup.core :as hiccup]
+            [clojure.string :as str]))
 
-(defn- wrap-span [classes content]
-  (if (coll? classes)
-    (let [classes (str/join \space classes)]
-      (format "<span class=\"%s\">%s</span>" classes content))
-    (format "<span class=\"%s\">%s</span>" classes content)))
+(defn- wrap-span [classes attrs content]
+  (let [classes (str/join \space classes)]
+    (hiccup/html
+      [:span (merge {:class classes} attrs) content])))
 
 (defn- var-link [var content]
   (let [m (meta var)]
-    (format "<a href=\"/ns/%s#%s\">%s</a>" (str (:ns m)) (:name m) content)))
+    [:a {:href (format "/ns/%s#%s" (str (:ns m)) (:name m))}
+     content]))
 
-(defn- symbol-class [x]
-  (str "sym__" x))
+(defn- symbol-attr [x]
+  {:data-symbol x})
 
 (defn ^:private colorful-symbol [x v]
   (when-let [info (some-> x :symbol-info)]
@@ -20,22 +21,23 @@
       (case type
         "local"
         #_=> (if (= (:usage info) :def)
-               (->> (format "<a name=\"%s\">%s</a>" (:id x) v)
-                    (wrap-span [type (symbol-class (:id x))]))
-               (->> (format "<a href=\"#%s\">%s</a>" (:binding info) v)
-                    (wrap-span [type (symbol-class (:binding info))])))
+               (wrap-span [type "def"] (symbol-attr (:id x))
+                          [:a {:name (:id x)} v])
+               (wrap-span [type] (symbol-attr (:binding info))
+                          [:a {:href (str "#" (:binding info))} v]))
         "var"
-        #_=> (->> (if (= (:usage info) :def)
-                    (format "<a name=\"%s\">%s</a>" (:name info) v)
-                    (var-link (:var info) v))
-                  (wrap-span [type (symbol-class (name v))]))
+        #_=> (if (= (:usage info) :def)
+               (wrap-span [type "def"] (symbol-attr (:name info))
+                          [:a {:name (:name info)} v])
+               (wrap-span [type] (symbol-attr v)
+                          (var-link (:var info) v)))
         "macro"
-        #_=> (wrap-span [type (symbol-class (:macro info))]
+        #_=> (wrap-span [type] (symbol-attr (:macro info))
                         (var-link (:macro info) v))
-        #_else (wrap-span type v)))))
+        #_else (wrap-span [type] {} v)))))
 
 (def colorful-symbols-rule
   {:symbol {:content colorful-symbol}})
 
 (def keyword-rule
-  {:keyword {:content (fn [x v] (wrap-span "keyword" v))}})
+  {:keyword {:content (fn [x v] (wrap-span ["keyword"] {} v))}})
