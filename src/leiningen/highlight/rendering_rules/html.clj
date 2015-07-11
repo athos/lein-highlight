@@ -1,28 +1,37 @@
-(ns leiningen.highlight.rendering-rules.html)
+(ns leiningen.highlight.rendering-rules.html
+  (:require [clojure.string :as str]))
 
-(defn- wrap-span [class content]
-  (format "<span class=\"%s\">%s</span>" class content))
+(defn- wrap-span [classes content]
+  (if (coll? classes)
+    (let [classes (str/join \space classes)]
+      (format "<span class=\"%s\">%s</span>" classes content))
+    (format "<span class=\"%s\">%s</span>" classes content)))
 
 (defn- var-link [var content]
   (let [m (meta var)]
     (format "<a href=\"/ns/%s#%s\">%s</a>" (str (:ns m)) (:name m) content)))
+
+(defn- symbol-class [x]
+  (str "sym__" x))
 
 (defn ^:private colorful-symbol [x v]
   (when-let [info (some-> x :symbol-info)]
     (let [type (name (:type info))]
       (case type
         "local"
-        #_=> (->> (if (= (:usage info) :def)
-                    (format "<a name=\"%s\">%s</a>" (:id x) v)
-                    (format "<a href=\"#%s\">%s</a>" (:binding info) v))
-                  (wrap-span type))
+        #_=> (if (= (:usage info) :def)
+               (->> (format "<a name=\"%s\">%s</a>" (:id x) v)
+                    (wrap-span [type (symbol-class (:id x))]))
+               (->> (format "<a href=\"#%s\">%s</a>" (:binding info) v)
+                    (wrap-span [type (symbol-class (:binding info))])))
         "var"
         #_=> (->> (if (= (:usage info) :def)
                     (format "<a name=\"%s\">%s</a>" (:name info) v)
                     (var-link (:var info) v))
-                  (wrap-span type))
+                  (wrap-span [type (symbol-class (name v))]))
         "macro"
-        #_=> (wrap-span type (var-link (:macro info) v))
+        #_=> (wrap-span [type (symbol-class (:macro info))]
+                        (var-link (:macro info) v))
         #_else (wrap-span type v)))))
 
 (def colorful-symbols-rule

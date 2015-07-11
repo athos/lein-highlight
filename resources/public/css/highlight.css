@@ -65,6 +65,10 @@ pre {
     background-color: #f8eec7;
 }
 
+.highlighted-symbol {
+    background-color: #c0d0ed;
+}
+
 .macro {
     font-weight: bold;
     color: #333;
