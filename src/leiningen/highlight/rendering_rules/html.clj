@@ -10,7 +10,7 @@
 (defn- var-link [var content]
   (let [m (meta var)]
     [:a {:href (format "/ns/%s#%s" (str (:ns m)) (:name m))}
-     content]))
+     (str content)]))
 
 (defn- symbol-attr [x]
   {:data-symbol x})
