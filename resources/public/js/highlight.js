@@ -14,11 +14,10 @@ $(function() {
 
     if (hash) {
       hash = hash.substr(1);
-      $('a[name="' + hash + '"]')
-      .parents('.line')
-      .addClass('highlighted-line');
+      $def = $('.def[data-symbol="' + hash + '"]');
 
-      $('span[data-symbol="' + hash + '"]').addClass('highlighted-symbol');
+      $def.parents('.line').addClass('highlighted-line');
+      $('[data-symbol="' + hash + '"]').addClass('highlighted-symbol');
     }
   }
 
