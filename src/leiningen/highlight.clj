@@ -36,7 +36,9 @@
   (hiccup/html5
     [:head
       [:title nsname]
-      [:link {:href "/css/highlight.css", :rel "stylesheet", :type "text/css"}]]
+      [:link {:href "/css/highlight.css", :rel "stylesheet", :type "text/css"}]
+      [:script {:src "https://code.jquery.com/jquery-2.1.4.min.js"}]
+      [:script {:src "/js/highlight.js"}]]
     [:body
       [:h1 nsname]
       body]))

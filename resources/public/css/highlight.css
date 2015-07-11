@@ -61,6 +61,10 @@ pre {
     padding-left: 8px;
 }
 
+.highlighted-line {
+    background-color: #f8eec7;
+}
+
 .macro {
     font-weight: bold;
     color: #333;
