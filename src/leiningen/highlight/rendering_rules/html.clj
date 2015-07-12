@@ -58,6 +58,7 @@
    :keyword {:content #(wrap-span "keyword" %2)}
    :string {:content string-rule}
    :comment {:content #(wrap-span "comment" %2)}
+   :discard {:discard #(wrap-span "comment" %2)}
    :list (collection-rule "list")
    :vector (collection-rule "vector")
    :map (collection-rule "map")
