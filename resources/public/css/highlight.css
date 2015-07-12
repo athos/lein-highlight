@@ -116,6 +116,15 @@ pre {
     color: #5e5e5e;
 }
 
+.nil, .boolean {
+    font-weight: bold;
+    color: #333;
+}
+
+.number {
+    color: #8955d9;
+}
+
 .keyword {
     color: #8955d9;
 }

@@ -52,6 +52,9 @@
 
 (def rendering-rule
   {:symbol {:content symbol-rule}
+   :nil {:content #(wrap-span "nil" %2)}
+   :boolean {:content #(wrap-span "boolean" %2)}
+   :number {:content #(wrap-span "number" %2)}
    :keyword {:content #(wrap-span "keyword" %2)}
    :string {:content string-rule}
    :comment {:content #(wrap-span "comment" %2)}
