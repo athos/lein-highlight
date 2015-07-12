@@ -129,7 +129,7 @@ pre {
     color: #8955d9;
 }
 
-.string {
+.string, .regex {
     color: #126e18;
 }
 

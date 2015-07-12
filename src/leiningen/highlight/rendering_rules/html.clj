@@ -56,6 +56,7 @@
    :boolean {:content #(wrap-span "boolean" %2)}
    :number {:content #(wrap-span "number" %2)}
    :keyword {:content #(wrap-span "keyword" %2)}
+   :regex {:content #(wrap-span "regex" %2)}
    :string {:content string-rule}
    :quote {:quote #(wrap-span "quote" %2)}
    :meta {:meta #(wrap-span "meta" %2)}
