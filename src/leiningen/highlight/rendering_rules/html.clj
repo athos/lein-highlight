@@ -61,4 +61,5 @@
    :list (collection-rule "list")
    :vector (collection-rule "vector")
    :map (collection-rule "map")
-   :set (collection-rule "set")})
+   :set (collection-rule "set")
+   :fn (collection-rule "fn")})

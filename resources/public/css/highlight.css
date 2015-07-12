@@ -139,6 +139,6 @@ pre {
 }
 
 .list-open, .list-close, .vector-open, .vector-close,
-.map-open, .map-close, .set-open, .set-close {
+.map-open, .map-close, .set-open, .set-close, .fn-open, .fn-close {
     color: #8a7d62;
 }
