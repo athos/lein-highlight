@@ -1,5 +1,6 @@
 (ns example.core
-  (:require [example.lib :as lib]))
+  (:require [clojure.string :as str]
+            [example.lib :as lib]))
 
 (defn collatz [n]
   (lazy-seq
@@ -17,3 +18,7 @@
 (defn f []
   (let1 x (* x x)
     (+ x x)))
+
+(->> (str/split "hoge\nfuga\npiyo" #"\n")
+     (map #(str "[" % "]"))
+     (str/join \newline))
