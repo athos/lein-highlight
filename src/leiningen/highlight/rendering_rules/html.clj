@@ -62,6 +62,9 @@
    :deref {:deref #(wrap-span "deref" %2)}
    :comment {:content #(wrap-span "comment" %2)}
    :discard {:discard #(wrap-span "comment" %2)}
+   :syntax-quote {:syntax-quote #(wrap-span "syntax-quote" %2)}
+   :unquote {:unquote #(wrap-span "unquote" %2)}
+   :unquote-splicing {:unquote-splicing #(wrap-span "unquote-splicing" %2)}
    :list (collection-rule "list")
    :vector (collection-rule "vector")
    :map (collection-rule "map")
