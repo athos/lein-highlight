@@ -119,3 +119,7 @@ pre {
 .keyword {
     color: #8955d9;
 }
+
+.string {
+    color: #126e18;
+}

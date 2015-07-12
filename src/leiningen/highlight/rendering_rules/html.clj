@@ -41,6 +41,12 @@
                         (var-link (:macro info) v))
         #_else (wrap-span type v)))))
 
+(defn string-rule [x v]
+  (->> (str/split v #"\n")
+       (map #(wrap-span "string" %))
+       (str/join \newline)))
+
 (def rendering-rule
   {:symbol {:content symbol-rule}
-   :keyword {:content #(wrap-span "keyword" %2)}})
+   :keyword {:content #(wrap-span "keyword" %2)}
+   :string {:content string-rule}})
