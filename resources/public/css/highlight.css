@@ -83,7 +83,7 @@ pre {
     color: #333;
 }
 
-.special, .meta {
+.special, .meta, .deref {
     font-weight: bold;
     color: #333;
 }

@@ -58,6 +58,7 @@
    :keyword {:content #(wrap-span "keyword" %2)}
    :string {:content string-rule}
    :meta {:meta #(wrap-span "meta" %2)}
+   :deref {:deref #(wrap-span "deref" %2)}
    :comment {:content #(wrap-span "comment" %2)}
    :discard {:discard #(wrap-span "comment" %2)}
    :list (collection-rule "list")
