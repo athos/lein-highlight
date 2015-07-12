@@ -123,3 +123,8 @@ pre {
 .string {
     color: #126e18;
 }
+
+.comment {
+    color: #7a7a7a;
+    font-style: italic;
+}

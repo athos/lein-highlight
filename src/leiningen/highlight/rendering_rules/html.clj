@@ -49,4 +49,5 @@
 (def rendering-rule
   {:symbol {:content symbol-rule}
    :keyword {:content #(wrap-span "keyword" %2)}
-   :string {:content string-rule}})
+   :string {:content string-rule}
+   :comment {:content #(wrap-span "comment" %2)}})
