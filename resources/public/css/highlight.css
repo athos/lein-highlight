@@ -128,3 +128,8 @@ pre {
     color: #7a7a7a;
     font-style: italic;
 }
+
+.list-open, .list-close, .vector-open, .vector-close,
+.map-open, .map-close, .set-open, .set-close {
+    color: #8a7d62;
+}

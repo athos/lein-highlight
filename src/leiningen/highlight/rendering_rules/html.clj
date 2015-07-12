@@ -46,8 +46,16 @@
        (map #(wrap-span "string" %))
        (str/join \newline)))
 
+(defn collection-rule [coll-name]
+  {:open #(wrap-span (str coll-name "-open") %2)
+   :close #(wrap-span (str coll-name "-close") %2)})
+
 (def rendering-rule
   {:symbol {:content symbol-rule}
    :keyword {:content #(wrap-span "keyword" %2)}
    :string {:content string-rule}
-   :comment {:content #(wrap-span "comment" %2)}})
+   :comment {:content #(wrap-span "comment" %2)}
+   :list (collection-rule "list")
+   :vector (collection-rule "vector")
+   :map (collection-rule "map")
+   :set (collection-rule "set")})
