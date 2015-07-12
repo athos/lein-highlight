@@ -57,6 +57,7 @@
    :number {:content #(wrap-span "number" %2)}
    :keyword {:content #(wrap-span "keyword" %2)}
    :string {:content string-rule}
+   :quote {:quote #(wrap-span "quote" %2)}
    :meta {:meta #(wrap-span "meta" %2)}
    :deref {:deref #(wrap-span "deref" %2)}
    :comment {:content #(wrap-span "comment" %2)}

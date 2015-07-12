@@ -83,7 +83,7 @@ pre {
     color: #333;
 }
 
-.special, .meta, .deref {
+.special, .quote, .meta, .deref {
     font-weight: bold;
     color: #333;
 }
@@ -112,7 +112,7 @@ pre {
     text-decoration: none;
 }
 
-.quote {
+.quoted {
     color: #5e5e5e;
 }
 
