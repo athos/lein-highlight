@@ -58,6 +58,7 @@
    :keyword {:content #(wrap-span "keyword" %2)}
    :regex {:content #(wrap-span "regex" %2)}
    :string {:content string-rule}
+   :char {:content #(wrap-span "char" %2)}
    :quote {:quote #(wrap-span "quote" %2)}
    :var {:var #(wrap-span "var-quote" %2)}
    :meta {:meta #(wrap-span "meta" %2)}
