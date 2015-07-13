@@ -37,8 +37,9 @@
                (wrap-span type (symbol-attr v)
                           (var-link (:var info) v)))
         "macro"
-        #_=> (wrap-span type (symbol-attr (:macro info))
-                        (var-link (:macro info) v))
+        #_=> (let [macro-name (str/replace (str (:macro info)) #"^#'" "")]
+               (wrap-span type (symbol-attr macro-name)
+                          (var-link (:macro info) v)))
         #_else (wrap-span type v)))))
 
 (defn string-rule [x v]
