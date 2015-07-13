@@ -41,6 +41,7 @@ pre {
     color: inherit;
     display: block;
     height: 18px;
+    font-size: 12px;
     line-height: 18px;
     padding: 0 8px;
     cursor: pointer;
@@ -51,6 +52,12 @@ pre {
     padding-bottom: 5px;
     padding-top: 5px;
     whitespace: nowrap;
+}
+
+.line {
+    font-size: 12px;
+    line-height: 18px;
+    height: 18px;
 }
 
 .highlight {
