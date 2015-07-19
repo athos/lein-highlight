@@ -27,20 +27,20 @@
         "local"
         #_=> (if (= (:usage info) :def)
                (wrap-span [type "def"] (symbol-attr (:id x))
-                          [:a {:name (:id x)} v])
+                          [:a {:name (:id x)} (str v)])
                (wrap-span [type] (symbol-attr (:binding info))
                           [:a {:href (str "#" (:binding info))} v]))
         "var"
         #_=> (if (= (:usage info) :def)
                (wrap-span [type "def"] (symbol-attr (:name info))
-                          [:a {:name (:name info)} v])
+                          [:a {:name (:name info)} (str v)])
                (wrap-span type (symbol-attr v)
                           (var-link (:var info) v)))
         "macro"
         #_=> (let [macro-name (str/replace (str (:macro info)) #"^#'" "")]
                (wrap-span type (symbol-attr macro-name)
                           (var-link (:macro info) v)))
-        #_else (wrap-span type v)))))
+        #_else (wrap-span type (str v))))))
 
 (defn string-rule [x v]
   (->> (str/split v #"\n")
