@@ -1,5 +1,6 @@
 (ns example.core
-  (:require [clojure.string :as str]
+  (:require [clojure.java.io :as io]
+            [clojure.string :as str]
             [example.lib :as lib]))
 
 (defn collatz [n]
@@ -22,3 +23,22 @@
 (->> (str/split "hoge\nfuga\npiyo" #"\n")
      (map #(str "[" % "]"))
      (str/join \newline))
+
+(defmacro aif [test then else]
+  `(let [~'it ~test]
+     ~then
+     ~else))
+
+(defn g [x]
+  (aif (:k x)
+    (inc it)
+    0))
+
+(let [x 0]
+  (let [[x & y] [1 2 3]]
+    (let [x x]
+      x)))
+
+(defn f [x]
+  (with-open [x (io/reader "hoge")]
+    x))
