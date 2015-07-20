@@ -1,6 +1,6 @@
 # lein-highlight
 
-Leiningen plugin for highlighting Clojure code
+Leiningen plugin for highlighting Clojure code powered by symbol-analyzer, a fine-grained Clojure code analyzer
 
 ## Usage
 
