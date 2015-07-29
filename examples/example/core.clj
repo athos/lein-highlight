@@ -42,3 +42,5 @@
 (defn f [x]
   (with-open [x (io/reader "hoge")]
     x))
+
+'{:tag String}x

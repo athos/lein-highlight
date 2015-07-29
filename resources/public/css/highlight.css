@@ -120,6 +120,10 @@ pre {
     text-decoration: none;
 }
 
+.class {
+    color: #557fd9;
+}
+
 .quoted {
     color: #5e5e5e;
 }
