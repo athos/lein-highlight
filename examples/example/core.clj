@@ -43,4 +43,6 @@
   (with-open [x (io/reader "hoge")]
     x))
 
-'{:tag String}x
+(deftype T [x]
+  clojure.lang.IFn
+  (invoke [this] x))
