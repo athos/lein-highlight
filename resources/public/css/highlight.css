@@ -120,7 +120,7 @@ pre {
     text-decoration: none;
 }
 
-.class {
+.class, .member {
     color: #557fd9;
 }
 

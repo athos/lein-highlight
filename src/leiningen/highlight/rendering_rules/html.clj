@@ -20,6 +20,9 @@
 (defn- symbol-attr [x]
   {:data-symbol x})
 
+(defn- concat-elems [& elems]
+  (hiccup/html `[:span ~@elems]))
+
 (defn ^:private symbol-rule [x v]
   (when-let [info (some-> x :symbol-info)]
     (let [type (name (:type info))]
@@ -40,6 +43,25 @@
         #_=> (let [macro-name (str/replace (str (:macro info)) #"^#'" "")]
                (wrap-span type (symbol-attr macro-name)
                           (var-link (:macro info) v)))
+        "class"
+        #_=> (let [cstr (str v)]
+               (if (.endsWith cstr ".")
+                 (concat-elems
+                   (wrap-span type (subs cstr 0 (dec (count cstr))))
+                   (wrap-span "special" "."))
+                 (wrap-span type v)))
+        "member"
+        #_=> (let [mstr (str v)]
+               (if (.startsWith mstr ".")
+                 (concat-elems
+                   (wrap-span "special" ".")
+                   (wrap-span type (subs mstr 1)))
+                 (if-let [[_ c m] (re-matches #"([^/]+)/([^/]+)" mstr)]
+                   (concat-elems
+                     (wrap-span "class" c)
+                     (wrap-span "special" "/")
+                     (wrap-span type m))
+                   (wrap-span type v))))
         #_else (wrap-span type (str v))))))
 
 (defn string-rule [x v]
